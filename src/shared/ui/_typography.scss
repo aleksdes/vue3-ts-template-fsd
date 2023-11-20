@@ -1,0 +1,139 @@
+$font-family: "Euclid Circular A", sans-serif;
+
+%Title {
+  //styleName: Title;
+  font-family: $font-family;
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 72px;
+}
+
+%H1 {
+  //styleName: H1;
+  font-family: $font-family;
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 64px;
+}
+
+%H2 {
+  //styleName: H2;
+  font-family: $font-family;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 56px;
+}
+
+%H3 {
+  //styleName: H3;
+  font-family: $font-family;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 40px;
+}
+
+@mixin mobile-h3 {
+  /* Mobile/H3 */
+  font-family: $font-family;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%; /* 28.8px */
+}
+
+%Subtitle1 {
+  //styleName: Subtitle1;
+  font-family: $font-family;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+%Subtitle2 {
+  //styleName: Subtitle2;
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+%Subtitle3 {
+  //styleName: Subtitle3;
+  font-family: $font-family;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+%p1 {
+  //styleName: p1;
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+%p2 {
+  //styleName: p2;
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+%p3 {
+  //styleName: p3;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+%p4 {
+  //styleName: p4;
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+%p5 {
+  /* p5 */
+  font-family: $font-family;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 146%; /* 21.9px */
+}
+
+%Button1 {
+  //styleName: Button1;
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+%Button2 {
+  //styleName: Button2;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+%Caption1 {
+  //styleName: Caption1;
+  font-family: $font-family;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+%Caption2 {
+  //styleName: Caption2;
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}

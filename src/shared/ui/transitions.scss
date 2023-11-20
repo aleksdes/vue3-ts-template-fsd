@@ -1,0 +1,17 @@
+$accelerated-easing: cubic-bezier(0.16, 1, 0.3, 1);
+$decelerated-easing: cubic-bezier(0.7, 0, 0.84, 0);
+
+%AccelerateTransition {
+  transition-timing-function: $accelerated-easing;
+}
+
+%DecelerateTransition {
+  transition-timing-function: $decelerated-easing;
+}
+
+@mixin transition($properties, $easing: $accelerated-easing, $duration: 300ms) {
+  transition-property: $properties;
+  transition-duration: $duration;
+  transition-timing-function: $easing;
+  will-change: $properties;
+}

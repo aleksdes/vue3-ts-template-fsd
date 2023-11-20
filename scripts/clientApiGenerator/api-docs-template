@@ -1,0 +1,396 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "API Шаблона Vue3 TS",
+        "description": "Описание эндпойнтов API Шаблона Vue3 TS",
+        "license": {
+            "name": "proprietary"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://vue3-ts-template/",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/auth/login": {
+            "post": {
+                "summary": "Вход в систему",
+                "parameters": [
+                    {
+                        "name": "X-Requested-With",
+                        "in": "header",
+                        "description": "Признак XHR-запроса",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "XMLHttpRequest"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Параметры для входа пользователя в систему",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешный вход в систему",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "HTTP статус ответа",
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "success": {
+                                            "description": "Признак успешного окончания операции",
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/LoginSuccessfulResource",
+                                            "description": "Массив данных ответа"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Вход в систему невозможен",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "HTTP статус ответа",
+                                            "type": "number",
+                                            "example": 400
+                                        },
+                                        "success": {
+                                            "description": "Признак успешного окончания операции",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "error": {
+                                            "description": "Описание ошибки",
+                                            "properties": {
+                                                "code": {
+                                                    "description": "Код ошибки",
+                                                    "type": "string",
+                                                    "example": "invalid_grant"
+                                                },
+                                                "message": {
+                                                    "description": "Описание ошибки",
+                                                    "type": "string",
+                                                    "example": "The user credentials were incorrect."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "get": {
+                "summary": "Выход из системы",
+                "parameters": [
+                    {
+                        "name": "X-Requested-With",
+                        "in": "header",
+                        "description": "Признак XHR-запроса",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "XMLHttpRequest"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Авторизационный токен",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIyIiwianRpIjoiN2ExMTI4ZDQ5NWQ4YmM3MWRlOGMwMjU3NzZkYmUyODNhMTgxZDhlOWU4MTQ2YzliYmQzZmE5ZjNhMzE0ZDgzYTYxMGY3NzQ3OTA1OGNlNTAiLCJpYXQiOjE2OTYzMjA0OTIuMTM3NjI4LCJuYmYiOjE2OTYzMjA0OTIuMTM3NjMsImV4cCI6MTcyNzk0Mjg5Mi4xMjgyNjQsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.QS4_Aw-T6aFhbIdzwO4IPuFiV3m9OWAFqmg31b1bY4UPUyBGBhGpmqePEjpRxZOwr-ETlPDbeioehGoZAya_gRq1FFYA9oFRJxmbRowigJYCEX-7EKTNyvRxmKTptEx0sQ6dEbUdzYEui3ApqrmMtCARfv9rkaO8uN2oGmvkwsru2Wqrd-4QKpRnebzzqYDecPK7gxi5_fQtc4QgfFOi8HvVwRUV6FXjXBRrbSdUwpA51fRWM6u8QkR0q3-fsYIFER13hAEH9OHBOGc0wkFX3tsi7qezAiBKS6vO-zYgEzdg2uhZQzvlinchNeghyXn8n7jFQ_7gZfQvszAyVV8ipccLlYFabmj0gwLwaJoJ21_KEFeNfLUXPHUP-8rDs_lPg4sMvZagadHZ0p44g8aEuh73OiyO11Rn82e2BDj8Q6T0EOV4ITiKWvFK-uz8Wy14sZCBqINMo2txjCImAahCYPWlof2FDIGOy2-gX1ZsVCzSemYLKm8vWDrS8BFnGQekwYN62jI4AQ3bZbt4weWZPoJqj08ynqgLbbo0Px9O2q-32jIzOsAUfN3Qxc9d_GviuJHWoxp_VuXgvo6QnDUp01OF_2yuhsmHKLUu2cJb2eRg6bvMpDkrIj6vt4_tHFKVOe8bDCe8ZZNTadczKrPBmEeoxMWMlVoBIT79COVTM1E"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Успешный выход из системы"
+                    }
+                }
+            }
+        },
+        "/banners/": {
+            "post": {
+                "tags": [
+                    "Баннеры"
+                ],
+                "summary": "Создать баннер",
+                "parameters": [
+                    {
+                        "name": "X-Requested-With",
+                        "in": "header",
+                        "description": "Признак XHR-запроса",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "XMLHttpRequest"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Параметры для создания баннера",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BannerDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешное создание баннера",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "HTTP статус ответа",
+                                            "type": "number",
+                                            "example": 200
+                                        },
+                                        "success": {
+                                            "description": "Признак успешного окончания операции",
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/BannerResource",
+                                            "description": "Массив данных созданного баннера"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Переданы неверные параметры",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "HTTP статус ответа",
+                                            "type": "number",
+                                            "example": 422
+                                        },
+                                        "success": {
+                                            "description": "Признак успешного окончания операции",
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "error": {
+                                            "description": "Описание ошибки",
+                                            "properties": {
+                                                "code": {
+                                                    "description": "Код ошибки",
+                                                    "type": "string",
+                                                    "example": "Invalid Arguments"
+                                                },
+                                                "message": {
+                                                    "description": "Описание ошибки",
+                                                    "type": "string",
+                                                    "example": "The name field is required."
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "LoginDto": {
+                "title": "Запрос Login",
+                "description": "Запрос на вход в систему",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "title": "email",
+                        "description": "Email пользователя для входа",
+                        "type": "string",
+                        "example": "ivan.ivanov@example.test"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "Пароль пользователя",
+                        "type": "string",
+                        "example": "Password77!"
+                    }
+                },
+                "type": "object"
+            },
+            "BannerDto": {
+                "title": "Баннер",
+                "description": "Баннер на приветственной странице",
+                "required": [
+                    "name",
+                    "content"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Название баннера",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "content": {
+                        "title": "content",
+                        "description": "Детальный текст баннера",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "date_start": {
+                        "title": "date_start",
+                        "description": "дата начала показа баннера",
+                        "type": "string",
+                        "example": "10.09.2023"
+                    },
+                    "size": {
+                        "title": "size",
+                        "description": "размер баннера, small или big",
+                        "type": "string",
+                        "example": "small"
+                    },
+                    "color": {
+                        "title": "color",
+                        "description": "цвет баннера, black или white",
+                        "type": "string",
+                        "example": "white"
+                    },
+                    "active": {
+                        "title": "active",
+                        "description": "активность баннера",
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "sort": {
+                        "title": "sort",
+                        "description": "сортировка баннера",
+                        "type": "integer",
+                        "example": "100"
+                    },
+                    "date_end": {
+                        "title": "date_end",
+                        "description": "дата окончания показа баннера",
+                        "type": "string",
+                        "example": "10.09.2023"
+                    }
+                },
+                "type": "object"
+            },
+            "LoginSuccessfulResource": {
+                "title": "Ответ Login",
+                "description": "Ответ при успешном входе в систему",
+                "properties": {
+                    "token_type": {
+                        "title": "token_type",
+                        "description": "Тип токена для авторизации",
+                        "type": "string",
+                        "example": "Bearer"
+                    },
+                    "expires_in": {
+                        "title": "expires_in",
+                        "description": "Время жизни токена",
+                        "type": "number",
+                        "example": 31536000
+                    },
+                    "access_token": {
+                        "title": "access_token",
+                        "description": "Токен для авторизации",
+                        "type": "string",
+                        "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijc0MDc1YzhlMzkzZDE5YTIwZDk5YTc5MjlkZGI5MjlkYjQzN2RjMDNhNjY4ZmM4ZTUyZmI3ZjRiMDY4ZTBjYmJkYzY4YWI3MDkyYWMyOTk4In0"
+                    },
+                    "refresh_token": {
+                        "title": "refresh_token",
+                        "description": "Токен для обновления",
+                        "type": "string",
+                        "example": "def502009b8b24b62eacb618172846eee036b135eda5ba8516af270c40d8bf4dc25043277c4ed91636981c841a5558d821b34e4c6620d20b78b62859e66f7dfe478d7c603cb747527e6cfde6a3ae0eec8fb2459714ba695f787cdf485cca1212779b17f0aaa729e6e0897633dc45eeebdd065a3ee477be28c47334c5f0fa895ad7f85f1d2ebabcec1e9536afc0713073d1c650a57c06c1d3a6a54ff8702f9afd5d8ae6da12562184ffa7e6a27fb4f6b054c25f396b97e0588059f2d18ef1cf119ec1994b64fe4be42860fb8ae52b490752079e2edee22c73838c6dfa4645cb1f4ae736f363e5111c447c093939713595d24695b963b4da2d5c75c6259e30aaade7034fc718d8cf2d9eeb0fe11524b527b2b0ac7175c6e9a6a41150327fbdc6c472c01149a5bff2e66cf9bff0f5e80a4fac1927c70b191bea4b874000fb94ea3b2bea878d93a0ed40d40cfd078532862baeac0e84781a4e973b3c2a7afeadc504eb"
+                    }
+                },
+                "type": "object"
+            },
+            "BannerResource": {
+                "title": "Объект баннера",
+                "description": "Баннеры на приветственной странице",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id баннера",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "Название баннера",
+                        "type": "string",
+                        "example": "Баннер"
+                    },
+                    "content": {
+                        "title": "content",
+                        "description": "Детальный текст баннера",
+                        "type": "string",
+                        "example": "Детальный текст"
+                    },
+                    "size": {
+                        "title": "size",
+                        "description": "размер баннера",
+                        "type": "string",
+                        "example": "small"
+                    },
+                    "color": {
+                        "title": "color",
+                        "description": "Цвет баннера",
+                        "type": "string",
+                        "example": "white"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

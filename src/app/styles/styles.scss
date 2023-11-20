@@ -1,0 +1,11 @@
+@import "https://fonts.cdnfonts.com/css/euclid-circular-a";
+@import "normalize.css";
+@import "./colors.scss";
+
+:root {
+  --default-shadow: 0 0 1px 0 rgba(13, 13, 34, 0.04), 0 2px 6px 0 rgba(13, 13, 34, 0.04), 0 16px 24px 0 rgba(13, 13, 34, 0.06);
+}
+
+body {
+  font-family: "Euclid Circular A", sans-serif;
+}
